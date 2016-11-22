@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- <div class="col-md-2">
+     
+
+      <p>
+        Search:
+        <input ng-model="$ctrl.query" />
+      </p>
+
+      <p>
+        Sort by:
+        <select ng-model="$ctrl.orderProp">
+          <option value="name">Alphabetical</option>
+          <option value="age">Newest</option>
+        </select>
+      </p>
+
+    </div> -->
+    <div class="col-md-10">
+     
+
+      <ul class="phones">
+        <li ng-repeat="innerTransaction in transactions" class="thumbnail">
+          
+            <p>{{innerTransaction.amount}}</p>
+            <!--<p>{{innerTransaction.categorization}}</p>-->
+            <p>{{innerTransaction['is-pending']}}</p>
+            <!--<p>{{innerTransaction.aggregation-time}}</p>
+            <p>{{innerTransaction.account-id}}</p>-->
+            <p>{{innerTransaction['transaction-time']}}</p>
+         
+         
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
