@@ -5,7 +5,7 @@ angular.
   module('transactionList').
   component('transactionList', {
     templateUrl: 'transaction-list/transaction-list.template.html',
-    controller: ['$http', '$scope', function PhoneListController($http, $scope) {
+    controller: ['$http', '$scope', '$filter', function PhoneListController($http, $scope, $filter) {
       
       var req = {
         method: 'POST',
@@ -35,10 +35,20 @@ angular.
       console.log("successtransaction", response);
         transactions = new Array(response.data.transactions);
         $scope.transactions = transactions[0];
+        //$scope.processedData =  $scope.processData($scope.transactions);
       }, 
       function onerror(response){
         console.log("onerror", response);
       });
-    
+      /*$scope.processData =  function(transactions) {
+        console.log("processData :  ", transactions);
+        // Todo loop through the transactions array here and filter the time property by year and return the object.
+        $scope.transactionByYear = $filter('date')(transactions['transaction-time'], 'yyyy', 'UTC');
+        console.log("transactionByYear : ", $scope.transactionByYear); 
+      }*/
+      // Loop through the object returned by above function and returnt the objects filtered by monthly
+      // this should be again processed to calculate the credits and debits and average too.
+
+      
     }]
   });
