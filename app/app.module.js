@@ -1,11 +1,9 @@
 'use strict';
 
-// Define the `phonecatApp` module
-angular.module('phonecatApp', [
+// Define the `TransactionModule` module
+angular.module('TransactionList', [
   'ngAnimate',
   'ngRoute',
-  'core',
-  'phoneDetail',
-  'phoneList',
-  'transactionList'
+  'transactionList',
+  'averageTransactions'
 ]);

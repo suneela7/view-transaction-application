@@ -1,4 +1,4 @@
 'use strict';
 
 // Define the `phoneList` module
-angular.module('transactionList', []);
+angular.module('transactionList', ['transactionService.module']);

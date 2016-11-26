@@ -1,39 +1,22 @@
 <div class="container-fluid">
   <div class="row">
-    <!-- <div class="col-md-2">
-     
-
-      <p>
-        Search:
-        <input ng-model="$ctrl.query" />
-      </p>
-
-      <p>
-        Sort by:
-        <select ng-model="$ctrl.orderProp">
-          <option value="name">Alphabetical</option>
-          <option value="age">Newest</option>
-        </select>
-      </p>
-
-    </div> -->
     <div class="col-md-10">
-     
-
-      <ul class="phones">
-        <li ng-repeat="innerTransaction in transactions" class="thumbnail">
-          
-            <p>{{innerTransaction.amount}}</p>
-            <!--<p>{{innerTransaction.categorization}}</p>-->
-            <p>{{innerTransaction['is-pending']}}</p>
-            <!--<p>{{innerTransaction.aggregation-time}}</p>
-            <p>{{innerTransaction.account-id}}</p>-->
-            <p>{{innerTransaction['transaction-time']}}</p>
-         
-         
-        </li>
-      </ul>
-
+      <table class = "table">
+        <tr>
+          <th> Serial Number</th>
+          <th> Categorization</th>
+          <th> Merchant</th>
+          <th> Date </th>
+          <th> Amount </th>
+        </tr>
+        <tr ng-repeat="innerTransaction in transactions"> 
+          <td> {{ $index+1}}</td>         
+          <td>{{innerTransaction.categorization}}</td>
+          <td>{{innerTransaction.merchant}}</td>
+          <td>{{innerTransaction['transaction-time'] | date :'MM-dd-yyyy' : 'UTC'}}</td>
+          <td>{{innerTransaction.amount}}</td>         
+        </tr>
+      </table>
     </div>
   </div>
 </div>

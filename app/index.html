@@ -1,11 +1,10 @@
 <!doctype html>
-<html lang="en" ng-app="phonecatApp">
+<html lang="en" ng-app="TransactionList">
   <head>
     <meta charset="utf-8">
-    <title>Google Phone Gallery</title>
+    <title>Transaction Summary</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="app.css" />
-    <link rel="stylesheet" href="app.animations.css" />
 
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
@@ -14,23 +13,36 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="app.module.js"></script>
     <script src="app.config.js"></script>
-    <script src="app.animations.js"></script>
-    <script src="core/core.module.js"></script>
-    <script src="core/checkmark/checkmark.filter.js"></script>
-    <script src="core/phone/phone.module.js"></script>
-    <script src="core/phone/phone.service.js"></script>
-    <script src="phone-list/phone-list.module.js"></script>
-    <script src="phone-list/phone-list.component.js"></script>
-    <script src="phone-detail/phone-detail.module.js"></script>
-    <script src="phone-detail/phone-detail.component.js"></script>
+    <script src="services/transactionService.module.js"></script>
+    <script src="services/transactionsService.js"></script>
     <script src="transaction-list/transaction-list.module.js"></script>
     <script src="transaction-list/transaction-list.component.js"></script>
+    <script src="average-transactions/average-transactions.module.js"></script>
+    <script src="average-transactions/average-transactions.component.js"></script>
+
   </head>
   <body>
-
-    <div class="view-container">
-      <div ng-view class="view-frame"></div>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class = "container-fluid">
+            <div class = "navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Transaction</a>
+            </div> 
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                  <li class="active"><a href="/index.html#!/transactions">Transactions List</a></li>
+                  <li><a href="/index.html#!/averageTransactions">Average Transactions</a></li>
+                </ul>
+          </div>
+        </div>
     </div>
+    <div ng-view class="view-frame"></div>
+
 
   </body>
 </html>

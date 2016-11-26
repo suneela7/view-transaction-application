@@ -7,6 +7,10 @@ h1 {
   margin-top: 0;
 }
 
+#landing {
+  background: url('../img/calculator-background.jpg');
+  background-size: cover;
+}
 /* View: Phone list */
 .phones {
   list-style: none;
