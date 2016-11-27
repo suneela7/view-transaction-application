@@ -13,8 +13,8 @@
           <td scope = "row"> {{ $index+1}}</td>         
           <td>{{averageSpending.month}}</td>
           <td>{{averageSpending.year}}</td>
-          <td>{{averageSpending.averageIncome}}</td>
-          <td>{{averageSpending.averageSpent}}</td>         
+          <td>{{averageSpending.averageIncome | currency }}</td>
+          <td>{{averageSpending.averageSpent | currency }}</td>         
         </tr>
       </table>
     </div>

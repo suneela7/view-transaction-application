@@ -13,7 +13,7 @@ angular.module('transactionService.module')
 	             {
 	               "year" : $filter('date')(transaction['transaction-time'], 'yyyy', 'UTC'),
 	               "month":$filter('date')(transaction['transaction-time'], 'MMM', 'UTC') ,
-	               "amount" : transaction.amount,
+	               "amount" : transaction.amount/100,
 	               "merchant" : transaction.merchant
 	             };
 	             if(!ignoreDonutFlag) {
@@ -39,56 +39,45 @@ angular.module('transactionService.module')
 	    var filterUntilMonth = function(years, transObj) {
             var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
             angular.forEach(years, function(year, indexYear) {
-            var transObjByYear = $filter('filter')(transObj, function(transactionYear) {
-            	if(transactionYear.year === year) {
-            		return true;
-            	}
-            });
-            angular.forEach(months, function(month, indexMonth) {
-               var income =0,spent = 0;
-               var transObjByMonth = $filter('filter')(transObjByYear, function(transaction) {
-               		if(transaction.month === month) {
-               			return true;
-               		}
-               });
-               var countIncome =0, countSpent =0;
-               if(transObjByMonth.length > 0){
-                  angular.forEach(transObjByMonth, function(singleTrans, indexTrans) {
-	                  var amount = singleTrans.amount;
-	                  /*if(ignoreDonutFlag && singleTrans.merchant === "Dunkin #336784" && singleTrans.merchant === "Krispy Kreme Donuts") {
-	                  	amount = 0;
-	                  } else {
-	                  	amount = 
-	                  }*/
-	                  if(amount < 0) {
-	                  	/*if(ignoreDonutFlag && singleTrans.merchant === "Dunkin #336784" && singleTrans.merchant === "Krispy Kreme Donuts") {
-	                      	countSpent = countSpent;
-	                  	} else {
-	                  		spent = spent + (amount);
-	                      	countSpent++;
-	                  	}	*/
-	                  	spent = spent + (amount);
-	                      	countSpent++;                    
-	                  } else {
-	                    income = income + (amount);
-	                      countIncome++
-	                  }
-                  });
+	            var transObjByYear = $filter('filter')(transObj, function(transactionYear) {
+	            	if(transactionYear.year === year) {
+	            		return true;
+	            	}
+	            });
+	            angular.forEach(months, function(month, indexMonth) {
+	               var income =0,spent = 0;
+	               var transObjByMonth = $filter('filter')(transObjByYear, function(transaction) {
+	               		if(transaction.month === month) {
+	               			return true;
+	               		}
+	               });
+	               var countIncome =0, countSpent =0;
+	               if(transObjByMonth.length > 0){
+	                  	angular.forEach(transObjByMonth, function(singleTrans, indexTrans) {
+		                  	var amount = singleTrans.amount;
+		                    	if(amount < 0) {
+				                  	spent = spent + (amount);
+				                      	countSpent++;                    
+				                } else {
+				                    income = income + (amount);
+				                      countIncome++
+				                }
+	                  	});
 
 
-                  var averageIncomePerMonth = income/countIncome;
-                  var averageSpentPerMonth = spent/countSpent;
-                  var averageTransactions = {
-                    "month": month,
-                    "year" : year,
-                    "averageIncome" : averageIncomePerMonth,
-                    "averageSpent" : averageSpentPerMonth
-                  };
-                  averagespendings.push(averageTransactions);                  
-               }
-            });
-          });
-          return averagespendings;
+		                var averageIncomePerMonth = income/countIncome;
+		                var averageSpentPerMonth = Math.abs(spent/countSpent);
+		                var averageTransactions = {
+		                    "month": month,
+		                    "year" : year,
+		                    "averageIncome" : averageIncomePerMonth,
+		                    "averageSpent" : averageSpentPerMonth
+		                };
+		                averagespendings.push(averageTransactions);                  
+	               	}
+	            });
+          	});
+          	return averagespendings;
        }
 	    
 		return {

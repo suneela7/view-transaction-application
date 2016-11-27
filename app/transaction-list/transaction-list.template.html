@@ -4,17 +4,15 @@
       <table class = "table table-striped">
         <tr>
           <th> S.No </th>
-          <th> Categorization</th>
           <th> Merchant</th>
           <th> Date </th>
           <th> Amount </th>
         </tr>
         <tr ng-repeat="innerTransaction in transactions"> 
-          <td scope = "row"> {{ $index+1}}</td>         
-          <td>{{innerTransaction.categorization}}</td>
+          <td scope = "row"> {{ $index+1}}</td> 
           <td>{{innerTransaction.merchant}}</td>
           <td>{{innerTransaction['transaction-time'] | date :'MM-dd-yyyy' : 'UTC'}}</td>
-          <td>{{innerTransaction.amount}}</td>         
+          <td>{{innerTransaction.amount / 100 | currency }}</td>         
         </tr>
       </table>
     </div>
