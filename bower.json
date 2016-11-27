@@ -1,8 +1,8 @@
 {
-  "name": "angular-phonecat",
-  "description": "A starter project for AngularJS",
+  "name": "transaction-list",
+  "description": "A small application for transaction summary",
   "version": "0.0.0",
-  "homepage": "https://github.com/angular/angular-phonecat",
+  "homepage": "https://github.com/suneela7/view-transaction-application",
   "license": "MIT",
   "private": true,
   "dependencies": {

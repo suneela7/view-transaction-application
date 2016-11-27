@@ -1,22 +1,25 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-10">
-      <table class = "table">
+    <div class = "col-md-12">
+      <table class = "table table-striped">
         <tr>
-          <th> Serial Number</th>
+          <th> S.No</th>
           <th> Month</th>
           <th> Year</th>
           <th> Average Income </th>
           <th> Average Spent </th>
         </tr>
         <tr ng-repeat="averageSpending in averageSpendings"> 
-          <td> {{ $index+1}}</td>         
+          <td scope = "row"> {{ $index+1}}</td>         
           <td>{{averageSpending.month}}</td>
           <td>{{averageSpending.year}}</td>
           <td>{{averageSpending.averageIncome}}</td>
           <td>{{averageSpending.averageSpent}}</td>         
         </tr>
       </table>
+    </div>
+    <div class = "col-md-12">
+      <button ng-click = "ignoreDonuts(true)" type="button" class="btn btn-primary btn-lg btn-block"> Ignore Donut </button>
     </div>
   </div>
 </div>
