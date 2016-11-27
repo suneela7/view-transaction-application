@@ -2,9 +2,8 @@
 
 angular.
   module('TransactionList').
-  config(['$locationProvider' ,'$routeProvider',
-    function config($locationProvider, $routeProvider) {
-      $locationProvider.hashPrefix('!');
+  config(['$routeProvider',
+    function config($routeProvider) {
 
       $routeProvider.
         when('/transactions', {
