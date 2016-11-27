@@ -3,6 +3,7 @@
 angular.module('transactionService.module')
 	.factory('transactionsService', ['$http', '$filter', function($http, $filter) {
 		var allTransactionList = [];
+		var averagespendings = [];
 
 		var processTransactionsData =  function(transactions, ignoreDonutFlag) {
 	       var transactionDetailsArray = [];
@@ -26,7 +27,6 @@ angular.module('transactionService.module')
 	              yearsOnly.push($filter('date')(transaction['transaction-time'], 'yyyy', 'UTC'));
 	           }	           
 	       });
-	       console.log("yearTransObj", yearTransObj);
 
 	       return {
 	       	 "yearTransObj" : yearTransObj,
@@ -35,8 +35,8 @@ angular.module('transactionService.module')
 
 	    }
 	       
-	    var averagespendings = [];
 	    var filterUntilMonth = function(years, transObj) {
+	    	var averagespendings = [];
             var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
             angular.forEach(years, function(year, indexYear) {
 	            var transObjByYear = $filter('filter')(transObj, function(transactionYear) {
@@ -73,7 +73,8 @@ angular.module('transactionService.module')
 		                    "averageIncome" : averageIncomePerMonth,
 		                    "averageSpent" : averageSpentPerMonth
 		                };
-		                averagespendings.push(averageTransactions);                  
+		                
+		                averagespendings.push(averageTransactions);
 	               	}
 	            });
           	});
@@ -114,7 +115,7 @@ angular.module('transactionService.module')
 			    		allTransactionList = response.data.transactions;
 			    		var processedTransactionsData = processTransactionsData(response.data.transactions, ignoreDonutFlag);
 			    		 
-			    		averagespendings = filterUntilMonth(processedTransactionsData.yearsOnly, processedTransactionsData.yearTransObj);
+			    		 var averagespendings = filterUntilMonth(processedTransactionsData.yearsOnly, processedTransactionsData.yearTransObj);
 			    		return {
 			    			allTransactionList : allTransactionList,
 			    			processedTransactionsData : processedTransactionsData,
