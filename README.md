@@ -27,6 +27,7 @@ it whenever you like.
 - Run `npm start`.
 - Navigate your browser to [http://localhost:8000/](http://localhost:8000/) to see the application 
   running.
+- Hit http://localhost:8000/index.html#/transactions in browser after server starts.
 
 
 
